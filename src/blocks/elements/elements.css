@@ -1,0 +1,24 @@
+.elements {
+    margin-bottom: 66px;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    gap: 20px 17px;
+}
+
+@media screen and (max-width: 899px) {
+    .elements {
+        margin-bottom: 30px;
+        padding: 0 19px;
+        gap: 17px 15px;
+        grid-template-columns: repeat(auto-fit, minmax(276px, 1fr));
+    }
+}
+
+@media screen and (max-width: 615px) {
+    .elements {
+        margin-bottom: 50px;
+        grid-template-columns: repeat(auto-fit, minmax(252px, 1fr));
+        gap: 20px;
+    }
+}

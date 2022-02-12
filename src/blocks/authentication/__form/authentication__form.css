@@ -1,0 +1,22 @@
+.authentication__form {
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media screen and (max-width: 400px) {
+    .authentication__form {
+        max-width: 300px;
+        width: 300px;
+        margin: 0 30px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .authentication__form {
+        max-width: 260px;
+        width: 260px;
+        margin: 0 30px;
+    }
+}

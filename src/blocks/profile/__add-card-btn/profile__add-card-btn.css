@@ -1,0 +1,35 @@
+.profile__add-card-btn {
+    box-sizing: border-box;
+    background: url(../../../images/plus.svg);
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    background-position: center;
+    width: 150px;
+    min-height: 50px;
+    border: 2px solid #FFFFFF;
+    opacity: 1;
+    transition: opacity .2s linear;
+    position: relative;
+    border-radius: 2px;
+    padding: 0;
+    margin-left: auto;
+}
+
+.profile__add-card-btn:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 899px) {
+    .profile__add-card-btn {
+        width: 100%;
+        margin-bottom: 36px;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 615px) {
+    .profile__add-card-btn {
+        background-size: 16px 16px;
+    }
+}

@@ -1,0 +1,18 @@
+.element {
+    box-sizing: border-box;
+    display: block;
+    max-width: 282px;
+    background-color: #fff;
+    border-radius: 13px 13px 10px 10px;
+    position: relative;
+}
+
+.element:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 899px) {
+    .element {
+        max-width: 100%;
+    }
+}

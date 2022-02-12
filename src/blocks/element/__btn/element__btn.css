@@ -1,0 +1,21 @@
+.element__btn {
+    background: url(../../../images/like.svg);
+    background-size: 22px 19px;
+    width: 22px;
+    height: 19px;
+    opacity: 1;
+    transition: opacity .2s linear;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.element__btn:disabled {
+    fill: #000;
+    cursor: pointer;
+}
+
+.element__btn:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}

@@ -1,0 +1,29 @@
+.authentication__btn {
+    margin-top: 186px;
+    max-width: 358px;
+    max-height: 50px;
+    padding: 14px 86px;
+    border: 0;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #000000;
+    opacity: 1;
+    transition: opacity .2s linear;
+}
+
+.authentication__btn:hover {
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+@media screen and (max-width: 400px) {
+    .authentication__btn {
+        margin-top: 173px;
+    }
+}

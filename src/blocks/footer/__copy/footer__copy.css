@@ -1,0 +1,24 @@
+.footer__copy {
+    margin: 0;
+    font-family: Inter, Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #545454;
+}
+
+@media screen and (max-width: 899px) {
+    .footer__copy {
+        text-align: center;
+        padding: 0 19px;
+    }
+}
+
+@media screen and (max-width: 615px) {
+    .footer__copy {
+        text-align: start;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

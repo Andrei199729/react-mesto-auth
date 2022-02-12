@@ -1,0 +1,12 @@
+.authentication__signin {
+    max-width: 358px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 400px) {
+    .authentication__signin {
+        margin-top: 20px;
+    }
+}

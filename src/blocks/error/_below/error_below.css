@@ -1,0 +1,9 @@
+.error_below {
+    top: 201px;
+}
+
+@media screen and (max-width: 615px) {
+    .error_below {
+        top: 208px;
+    }
+}

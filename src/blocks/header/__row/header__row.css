@@ -1,0 +1,5 @@
+.header__row {
+    display: flex;
+    color: #fff;
+    align-items: center;
+}

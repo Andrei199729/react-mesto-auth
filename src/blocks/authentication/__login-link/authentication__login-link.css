@@ -1,0 +1,12 @@
+.authentication__login-link {
+    margin-left: 5px;
+    text-decoration: none;
+    opacity: 1;
+    transition: opacity 0.3s linear;
+    color: #FFFFFF;
+}
+
+.authentication__login-link:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
