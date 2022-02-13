@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import mestoLogo from '../images/mestologo.svg';
 
 function Header(props) {
     const put = <Link className="header__link" to='/signin'>Войти</Link>;
     const exit = <Link className="header__link" to='/' onClick={props.logout}>Выйти</Link>;
-    const register = <Link className="header__link" to='/signup'>Зарегистрироваться</Link>;
+    const register = <Link className="header__link" to='/signup'>Регистрация</Link>;
     const location = useLocation();
 
     return (

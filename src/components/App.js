@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch, Redirect, withRouter, useHistory } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -37,22 +37,24 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     Promise.all([api.getAboutUser(), api.getInitialCards()])
       .then(([user, card]) => {
         setCurrentUser(user);
         setCards(card);
       })
       .catch(err => console.log(err))
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
+    if (token) {
       auth.examinationValidationToken(token)
         .then((res) => {
           if (res) {
             setLoggedIn(true);
             setEmail(res.data.email);
-            history.push('/');
+          } else {
+            localStorage.removeItem('token');
           }
         })
+        .catch(err => console.log(err))
     }
   }, []);
 
@@ -120,7 +122,10 @@ function App() {
           history.push('/signin');
         }
       })
-      .catch((err) => err && (handleInfoTooltip({ union: unionTrue, text: 'Пользователь с таким email уже зарегистрирован!' }), history.push('/signin')))
+      .catch((err) => {
+        console.log(err);
+        handleInfoTooltip({ union: unionFalse, text: 'Что-то пошло не так! Попробуйте ещё раз.' });
+      })
   }
 
   function handleAuthorization(formData) {
@@ -131,10 +136,12 @@ function App() {
           setLoggedIn(true);
           setEmail(formData.email);
           handleInfoTooltip({ union: unionTrue, text: 'Вы успешно авторизованы!' });
-          history.push('/');
         }
       })
-      .catch(err => err && handleInfoTooltip({ union: unionFalse, text: 'Что-то пошло не так! Попробуйте ещё раз.' }));
+      .catch(err => {
+        console.log(err);
+        handleInfoTooltip({ union: unionFalse, text: 'Что-то пошло не так! Попробуйте ещё раз.' })
+      });
   }
 
   function handleInfoTooltip(data) {

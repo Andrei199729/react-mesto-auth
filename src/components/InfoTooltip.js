@@ -1,5 +1,3 @@
-// import unionTrue from '../images/union.svg';
-// import unionFalse from '../images/unionerror.svg';
 import React from 'react';
 
 function InfoTooltip(props) {

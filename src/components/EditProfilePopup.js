@@ -10,7 +10,15 @@ function EditProfilePopup(props) {
     useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser]);
+    }, [currentUser, props.isOpen]);
+
+    function handleChangeName(e) {
+        setName(e.target.value);
+    }
+
+    function handleChangeDescription(e) {
+        setDescription(e.target.value);
+    }
 
     function handleSubmit(e) {
         // Запрещаем браузеру переходить по адресу формы
@@ -21,6 +29,7 @@ function EditProfilePopup(props) {
             name,
             about: description,
         });
+        props.onClose();
     }
 
     return (
@@ -42,7 +51,7 @@ function EditProfilePopup(props) {
                     minLength="2"
                     maxLength="40"
                     value={name || ''}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={handleChangeName}
                     required
                 />
                 <span className="error" id="name-error"></span>
@@ -55,7 +64,7 @@ function EditProfilePopup(props) {
                     minLength="2"
                     maxLength="200"
                     value={description || ''}
-                    onChange={(e) => setDescription(e.target.value)}
+                    onChange={handleChangeDescription}
                     required
                 />
                 <span className="error error_below" id="job-error"></span>

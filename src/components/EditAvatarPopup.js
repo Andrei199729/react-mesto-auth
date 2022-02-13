@@ -10,6 +10,7 @@ function EditAvatarPopup(props) {
         props.onUpdateAvatar({
             avatar: link,
         });
+        props.onClose();
     }
 
     return (

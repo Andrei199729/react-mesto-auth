@@ -1,24 +1,26 @@
-import React, { createRef } from "react";
+import React, { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
 
-    const refInputName = createRef();
-    const refInputLink = createRef();
+    const [name, setName] = useState('');
+    const [link, setLink] = useState('');
+
+    useEffect(() => {
+        setName('');
+        setLink('');
+    }, [props.isOpen])
 
     function handleSubmit(e) {
 
         // Запрещаем браузеру переходить по адресу формы
         e.preventDefault();
 
-        // Передаём значения управляемых компонентов во внешний обработчик
-        const inputDataName = refInputName.current.value;
-        const inputDataLink = refInputLink.current.value;
-
         props.onAddPlace({
-            name: inputDataName,
-            link: inputDataLink
+            name,
+            link
         });
+        props.onClose();
     }
 
     return (
@@ -40,7 +42,8 @@ function AddPlacePopup(props) {
                     placeholder="Название"
                     minLength="2"
                     maxLength="30"
-                    ref={refInputName}
+                    onChange={e => setName(e.target.name)}
+                    value={name}
                     required
                 />
                 <span className="error" id="card-error"></span>
@@ -50,7 +53,8 @@ function AddPlacePopup(props) {
                     id="link"
                     name="link"
                     placeholder="Ссылка на картинку"
-                    ref={refInputLink}
+                    value={link}
+                    onChange={e => setLink(e.target.value)}
                     required
                 />
                 <span className="error error_below" id="link-error"></span>
