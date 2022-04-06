@@ -22,6 +22,12 @@
     opacity: 0.85;
 }
 
+.authentication__btn:disabled {
+    background: #fff;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
 @media screen and (max-width: 400px) {
     .authentication__btn {
         margin-top: 173px;

@@ -3,13 +3,13 @@ import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from '../context/CurrentUserContext';
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
+import DeleteCardPopup from "./DeleteCardPopup";
 import Register from "./Register";
 import Login from "./Login";
 import * as auth from "../utils/auth";
@@ -26,15 +26,16 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
+  const [isDeleteCardPopup, setDeleteCardPopupOpen] = useState(false);
   const [isViewOpen, setViewOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState([]);
   const [cards, setCards] = useState([]);
-  const [email, setEmail] = useState('');
   const [isInfoTooltip, setInfoTooltip] = useState(false);
   const [isData, setData] = useState({});
   const history = useHistory();
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -78,8 +79,10 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id)
-      .then(() => setCards(cards.filter((c) => c._id !== card._id)))
+    api.deleteCard(card.card._id)
+      .then(() => {
+        setCards(cards.filter((c) => c._id !== card.card._id));
+      })
       .catch(err => console.log(err))
   }
 
@@ -89,11 +92,17 @@ function App() {
     setEditAvatarPopupOpen(false);
     setViewOpen(false);
     setInfoTooltip(false);
+    setDeleteCardPopupOpen(false);
   }
 
   function handleCardClick(card) {
     setSelectedCard(card);
     setViewOpen(true);
+  }
+
+  function handleCardDeleteData(card) {
+    setSelectedCard(card);
+    setDeleteCardPopupOpen(true);
   }
 
   function handleUpdateUser(user) {
@@ -169,9 +178,9 @@ function App() {
             onAddPlace={() => setAddPlacePopupOpen(true)}
             onEditAvatar={() => setEditAvatarPopupOpen(true)}
             onCardClick={(item) => handleCardClick(item)}
+            onCardDelete={(item) => handleCardDeleteData(item)}
             cards={cards}
             onCardLike={(card) => handleCardLike(card)}
-            onCardDelete={(card) => handleCardDelete(card)}
           />
           <Route path='/signin'>
             <Login
@@ -200,12 +209,12 @@ function App() {
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={(newCard) => handleAddPlaceSubmit(newCard)} />
-        {/*<!-- Modal delete --> */}
-        <PopupWithForm
-          title='Вы уверены?'
-          name='delete'
-          btnText='Да' />
-        {/* <!-- /Modal delete --> */}
+        <DeleteCardPopup
+          isOpen={isDeleteCardPopup}
+          onClose={closeAllPopups}
+          onCardDelete={(card) => handleCardDelete(card)}
+          card={selectedCard}
+        />
         <ImagePopup
           card={selectedCard}
           view={isViewOpen}

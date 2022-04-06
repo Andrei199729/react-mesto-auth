@@ -10,12 +10,18 @@ function Header(props) {
 
     return (
         <header className="header">
-            <img className="header__logo" src={mestoLogo} alt="Место" />
-            <div className="header__row">
+        {/* <div className="header__conteiner-phone">
                 <p className="header__email">{props.email}</p>
-                {location.pathname === '/signup' && put}
-                {location.pathname === '/signin' && register}
                 {props.loggedIn && exit}
+            </div> */}
+        <div className="header__row">
+          <img className="header__logo" src={mestoLogo} alt="Место" />
+          <div className="header__row">
+            <p className="header__email header__email-right">{props.email}</p>
+            {location.pathname === '/signup' && put}
+            {location.pathname === '/signin' && register}
+            {props.loggedIn && exit}
+          </div>
             </div>
         </header >
     );
